@@ -1,0 +1,61 @@
+﻿@model FedGroupProjects.Models.TaxPayer
+@{
+    ViewData["Title"] = "Tax";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    @using (Html.BeginForm("Index", "Tax", FormMethod.Post, new { @autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="input-group">
+            <div class="control-label">
+                @Html.LabelFor(m => m.Age)
+            </div>
+            <div class="control-label">
+                @Html.TextBoxFor(m => m.Age)
+            </div>
+            <div class="alert-danger">
+                @Html.ValidationMessageFor(m => m.Age)
+            </div>
+        </div>
+
+        <div class="input-group">
+            <div class="control-label">
+                @Html.LabelFor(m => m.AnnualSalary)
+            </div>
+            <div class="control-label">
+                @Html.TextBoxFor(m => m.AnnualSalary)
+            </div>
+            <div class="alert-danger">
+                @Html.ValidationMessageFor(m => m.AnnualSalary)
+            </div>
+        </div>
+
+        <div class="input-group">
+            <div class="control-label">
+                @Html.LabelFor(m => m.Term)
+            </div>
+            <div class="control-label">
+                @Html.DropDownListFor(m => m.Term, Model.TermOptions)
+            </div>
+            <div class="alert-danger">
+                @Html.ValidationMessageFor(m => m.Term)
+            </div>
+        </div>
+
+        <br />
+
+        <div class="btn-block">
+            <input type="submit" value="Calculate" />
+        </div>
+
+        <hr />
+        
+        <div class="control-label">
+            @Html.TextBoxFor(m => m.Tax, new { disabled = "disabled" })
+        </div>
+    }
+</div>
